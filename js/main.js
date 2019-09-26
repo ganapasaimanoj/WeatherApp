@@ -16,6 +16,8 @@ function getWeatherInfo(event) {
 
     const geoUrl = `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${lat},${lon}`;
     fetch(geoUrl).then(response => response.json()).then(data => {
+        document.getElementById('area').textContent = data.LocalizedName;
+        document.getElementById('state').textContent = data.AdministrativeArea.LocalizedName;
         collectWeatherInfo(data.Key);
     }).catch(error => console.log(error));
 
@@ -27,7 +29,7 @@ function getWeatherInfo(event) {
     }
 
     function displayWeather(temperature) {
-        console.log(temperature);
+        // console.log(temperature);
         document.getElementById('weatherText').textContent = temperature.WeatherText;
         document.getElementById('weatherImage').setAttribute('src', `images/${temperature.WeatherIcon}.png`);
         document.getElementById('weather').innerHTML = `${Math.round(temperature.Temperature.Metric.Value)}<sup>&#176;</sup>C`;

@@ -23,8 +23,9 @@
         <div class="parent">
             <h1 class="display-4 my-5 text-center">Weather App</h1>
             <div class="row">
-                <div class="child col-md-6">
-                    <form action="#" class="w-50">
+                <div class="child col-sm-16 col-md-6">
+                    <form action="#" class="w-75">
+                        <h1 class="text-secondary mb-3">Location</h1>
                         <div class="form-group">
                             <label for="lat">Latitude</label>
                             <input type="text" id="lat" class="form-control" placeholder="Latitude">
@@ -38,10 +39,15 @@
                     </form>
                 </div>
 
-                <div class="child col-md-6">
+                <div class="child col-sm-16 col-md-6">
+                    <h1 class="text-secondary mb-3">Current Weather</h1>
                     <h1 id="weatherText" class="text-warning"></h1>
                     <img src="" class="card-img-top" id="weatherImage">
                     <h1 id="weather" class="text-success"></h1>
+                    <div class="area mt-3">
+                        <span id="area" class="text-secondary pl-3"></span>
+                        <span id="state" class="text-danger pl-3"></span>
+                    </div>
                 </div>
 
             </div>
