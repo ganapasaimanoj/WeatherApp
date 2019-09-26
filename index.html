@@ -19,10 +19,30 @@
 
 <body>
 
-    <div class="container">
-        <main>
-
+    <div class="container my-5">
+        <h1 class="display-4 my-5 text-primary text-center">Weather App</h1>
+        <main class="my-5 text-primary d-flex align-items-center justify-content-center">
+            <form action="#" class="form w-25" id="inputForm">
+                <div class="form-group">
+                    <label for="lat">Latitude</label>
+                    <input type="text" id="lat" class="form-control" placeholder="Latitude">
+                </div>
+                <div class="form-group">
+                    <label for="lon">Longitude</label>
+                    <input type="text" id="lon" class="form-control" placeholder="Longitude">
+                </div>
+                <button class="btn btn-sm btn-success text-capitalize" type="submit" id="getBtn">get weather
+                    info</button>
+            </form>
         </main>
+
+        <section id="output" class="d-flex align-items-center justify-content-center">
+            <h1 class="text-secondary">Weather Details</h1>
+
+            <div class="card w-25">
+                <!-- <img src="" class="card-img-top" width="100" height="100"> -->
+            </div>
+        </section>
     </div>
 
     <script src="main.js"></script>

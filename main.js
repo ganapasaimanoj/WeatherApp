@@ -1,61 +1,33 @@
-const apiKey = 'Pk69Wv4dCv2y1evoN5sdgCjaJ0uqlCQc';
-const city = 'hyderabad';
-const url = 'http://dataservice.accuweather.com/locations/v1/cities/search';
-const query = `?apikey=${apiKey}&q=${city}`;
-const sortedResult = [];
+(() => {
+    navigator.geolocation.getCurrentPosition(position => {
+        document.getElementById('lat').value = position.coords.latitude;
+        document.getElementById('lon').value = position.coords.longitude;
+    });
+})();
 
-async function getWeather() {
-    const result = await fetch(url + query)
-        .then(response => response.json()).then(data => data)
-        .catch(error => console.log(error));
+document.getElementById('getBtn').addEventListener('click', getWeatherInfo);
 
-    const output = result.filter(item => item.Country.LocalizedName === 'India');
-    sortedResult.push(output[0]);
+function getWeatherInfo(event) {
+    event.preventDefault();
+
+    const apiKey = 'Pk69Wv4dCv2y1evoN5sdgCjaJ0uqlCQc';
+    const lat = document.getElementById('lat').value;
+    const lon = document.getElementById('lon').value;
+
+    const geoUrl = `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${lat},${lon}`;
+    fetch(geoUrl).then(response => response.json()).then(data => {
+        collectWeatherInfo(data.Key);
+    }).catch(error => console.log(error));
+
+    function collectWeatherInfo(cityKey) {
+        const weatherUrl = `http://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${apiKey}`;
+        fetch(weatherUrl).then(response => response.json()).then(data => {
+            // displayWeather(Math.round(data[0].Temperature.Metric.Value));
+            displayWeather(data[0]);
+        }).catch(error => console.log(error));
+    }
+
+    function displayWeather(temperature) {
+        console.log(temperature);
+    }
 }
-getWeather();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// const key = 'Pk69Wv4dCv2y1evoN5sdgCjaJ0uqlCQc';
-// const getCity = async (city) => {
-//     const base = 'http://dataservice.accuweather.com/locations/v1/cities/search';
-//     const query = `?apikey=${key}&q=${city}`;
-//     const response = await fetch(base + query);
-//     const data = await response.json();
-
-//     return data[0];
-// };
-
-// getCity('hyderabad')
-//     .then(data => console.log(data))
-//     .catch(err => console.log(err));
