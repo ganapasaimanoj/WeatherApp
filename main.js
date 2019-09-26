@@ -29,5 +29,6 @@ function getWeatherInfo(event) {
 
     function displayWeather(temperature) {
         console.log(temperature);
+        document.getElementById('weather').innerHTML = `${temperature}<sup>&#176;</sup>C`;
     }
 }
