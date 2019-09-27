@@ -14,7 +14,7 @@ function getWeatherInfo(event) {
     const lat = document.getElementById('lat').value;
     const lon = document.getElementById('lon').value;
 
-    const geoUrl = `https://crossorigin.me/http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${lat},${lon}`;
+    const geoUrl = `http://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${lat},${lon}`;
     fetch(geoUrl).then(response => response.json()).then(data => {
         document.getElementById('area').textContent = data.LocalizedName;
         document.getElementById('state').textContent = data.AdministrativeArea.LocalizedName;
@@ -22,7 +22,7 @@ function getWeatherInfo(event) {
     }).catch(error => console.log(error));
 
     function collectWeatherInfo(cityKey) {
-        const weatherUrl = `https://crossorigin.me/http://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${apiKey}`;
+        const weatherUrl = `http://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${apiKey}`;
         fetch(weatherUrl).then(response => response.json()).then(data => {
             displayWeather(data[0]);
         }).catch(error => console.log(error));
