@@ -1,7 +1,12 @@
+// Adding event listeners to the buttons
 document.getElementById('currentBtn').addEventListener('click', getCurrentWeather);
 document.getElementById('getBtn').addEventListener('click', getWeatherInfo);
+document.getElementById('cityBtn').addEventListener('click', getCityWeather);
+
+// API key to access weather from AccuWeather API
 const apiKey = 'AvblbFuftHqqapuLEj2PhzjEsvaWuHe7';
 
+// Calls when the user click's on 'get current location's weather button
 function getCurrentWeather(event) {
     event.preventDefault();
 
@@ -13,6 +18,14 @@ function getCurrentWeather(event) {
     });
 }
 
+// Calls when the user click's on get weather of the city entered
+function getCityWeather(event) {
+    event.preventDefault();
+
+
+}
+
+// Calls when the user click's on 'get weather of the co-ordinates'
 function getWeatherInfo(event) {
     event.preventDefault();
 
@@ -33,6 +46,7 @@ function getWeatherInfo(event) {
         }).catch(error => console.log(error));
     }
 
+    // Display's the weather in html
     function displayWeather(temperature) {
         // console.log(temperature);
         document.getElementById('weatherText').textContent = temperature.WeatherText;
