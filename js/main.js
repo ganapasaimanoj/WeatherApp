@@ -1,16 +1,21 @@
-(() => {
+document.getElementById('currentBtn').addEventListener('click', getCurrentWeather);
+document.getElementById('getBtn').addEventListener('click', getWeatherInfo);
+const apiKey = 'AvblbFuftHqqapuLEj2PhzjEsvaWuHe7';
+
+function getCurrentWeather(event) {
+    event.preventDefault();
+
     navigator.geolocation.getCurrentPosition(position => {
         document.getElementById('lat').value = position.coords.latitude;
         document.getElementById('lon').value = position.coords.longitude;
-    });
-})();
 
-document.getElementById('getBtn').addEventListener('click', getWeatherInfo);
+        getWeatherInfo(event);
+    });
+}
 
 function getWeatherInfo(event) {
     event.preventDefault();
 
-    const apiKey = 'txIjfrI8CnvAvGIx1cmyhUOriwqknmgW';
     const lat = document.getElementById('lat').value;
     const lon = document.getElementById('lon').value;
 
