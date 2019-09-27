@@ -10,7 +10,7 @@ document.getElementById('getBtn').addEventListener('click', getWeatherInfo);
 function getWeatherInfo(event) {
     event.preventDefault();
 
-    const apiKey = 'Pk69Wv4dCv2y1evoN5sdgCjaJ0uqlCQc';
+    const apiKey = 'txIjfrI8CnvAvGIx1cmyhUOriwqknmgW';
     const lat = document.getElementById('lat').value;
     const lon = document.getElementById('lon').value;
 
