@@ -21,8 +21,15 @@ function getCurrentWeather(event) {
 // Calls when the user click's on get weather of the city entered
 function getCityWeather(event) {
     event.preventDefault();
+    
+    var city = document.getElementById('city').value;
+    const url = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey}&q=${city}`;
 
-
+    fetch(url).then(response => response.json()).then(data => {
+        const result = data.filter(item => item.Country.ID == 'IN');
+        if(result.length >= 0)
+        console.log(result[0]);
+    }).catch(error => console.log(error));
 }
 
 // Calls when the user click's on 'get weather of the co-ordinates'
