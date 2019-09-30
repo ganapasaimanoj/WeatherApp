@@ -21,15 +21,27 @@ function getCurrentWeather(event) {
 // Calls when the user click's on get weather of the city entered
 function getCityWeather(event) {
     event.preventDefault();
-    
+
     var city = document.getElementById('city').value;
-    const url = `http://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey}&q=${city}`;
+
+    const url = `https://dataservice.accuweather.com/locations/v1/cities/search?apikey=${apiKey}&q=${city}`;
 
     fetch(url).then(response => response.json()).then(data => {
         const result = data.filter(item => item.Country.ID == 'IN');
-        if(result.length >= 0)
-        console.log(result[0]);
+        if(result.length >= 0){
+            const url = `https://dataservice.accuweather.com/currentconditions/v1/${result[0].Key}?apikey=${apiKey}`;
+            
+            fetch(url).then(response => response.json()).then(data => {
+                const matchedResult = data[0];
+
+                document.getElementById('weatherText').textContent = matchedResult.WeatherText;
+                document.getElementById('weatherImage').setAttribute('src', `images/${matchedResult.WeatherIcon}.png`);
+                document.getElementById('weather').innerHTML = `${Math.round(matchedResult.Temperature.Metric.Value)}<sup>&#176;</sup>C`;
+                document.getElementById('area').textContent = city.toUpperCase();
+            }).catch(error => console.log(error));
+        }
     }).catch(error => console.log(error));
+
 }
 
 // Calls when the user click's on 'get weather of the co-ordinates'
