@@ -14,21 +14,36 @@
 
     <!-- linking external css -->
     <link rel="stylesheet" href="css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/mdb.min.css">
     <link rel="stylesheet" href="css/main.css">
 </head>
 
-<body class="mx-sm-auto d-sm-flex justify-content-center align-items-center">
+<body>
 
     <div class="container text-primary">
         <div class="parent">
             <h1 class="display-4 my-3 text-center">Weather Project</h1>
             <div class="row">
-                <div class="child col-sm-12 col-md-6 mt-5 mx-sm-auto">
+                <div class="child col-sm-16 col-md-6 mt-5">
                     <div>
                         <button type="submit" class="btn btn-sm btn-success text-capitalize" id="currentBtn">get current
                             location's weather</button>
                     </div>
+                    <div class="badge badge-pill badge-danger my-4 ml-5">OR</div>
+
+                    <form action="#" class="w-75">
+                        <h2 class="text-secondary mb-3">Enter Location Co-ordinate's</h2>
+                        <div class="form-group d-inline-block">
+                            <input type="text" id="lat" class="form-control" placeholder="Enter Area Latitude"
+                                autocomplete="off">
+                        </div>
+                        <div class="form-group d-inline-block">
+                            <input type="text" id="lon" class="form-control" placeholder="Enter Area Longitude"
+                                autocomplete="off">
+                        </div>
+                        <button class="btn btn-sm btn-success text-capitalize" type="submit" id="getBtn">get weather
+                            info</button>
+                    </form>
+
                     <div class="badge badge-pill badge-danger my-4 ml-5">OR</div>
 
                     <form action="#" class="w-75">
@@ -39,42 +54,17 @@
                                 autocomplete="off">
                         </div>
                         <button class="btn btn-sm btn-success text-capitalize" type="submit" id="cityBtn">get
-                            weather by city name</button>
+                            weather of the city</button>
                     </form>
-                    <div>
-                        <div class="badge badge-pill badge-danger my-4 ml-5">OR</div>
-
-                        <div>
-                            <button type="submit" class="btn btn-sm btn-success text-capitalize" onclick="toggleHide()"
-                                id="toggleHideBtn">enter
-                                co-ordinates of location</button>
-                        </div>
-                        <div class="d-none" id="toggleHide">
-                            <form action="#" class="w-75">
-                                <h2 class="text-secondary mb-3">Enter Location Co-ordinate's</h2>
-                                <div class="form-group d-inline-block">
-                                    <input type="text" id="lat" class="form-control" placeholder="Enter Area Latitude"
-                                        autocomplete="off">
-                                </div>
-                                <div class="form-group d-inline-block">
-                                    <input type="text" id="lon" class="form-control" placeholder="Enter Area Longitude"
-                                        autocomplete="off">
-                                </div>
-                                <button class="btn btn-sm btn-success text-capitalize" type="submit" id="getBtn">get
-                                    weather
-                                    info</button>
-                            </form>
-                        </div>
-                    </div>
                 </div>
 
-                <div class="child col-sm-12 col-md-6 mt-5 p-md-5 text-center" id="favCard">
-                    <h1 class="text-danger mb-3 p-3" id="weatherTitle">Current Weather</h1>
-                    <h1 id="weatherText" class="text-secondary pt-3"></h1>
+                <div class="child col-sm-16 col-md-6 mt-5 p-md-5" id="favCard">
+                    <h1 class="text-warning mb-3 p-3">Current Weather</h1>
+                    <h1 id="weatherText" class="text-secondary"></h1>
                     <img src="" class="card-img-top" id="weatherImage">
                     <h1 id="weather" class="text-success"></h1>
                     <div class="area my-3">
-                        <span id="area" class="text-primary pl-3"></span>
+                        <span id="area" class="text-secondary pl-3"></span>
                         <span id="state" class="text-danger pl-3"></span>
                     </div>
                 </div>
