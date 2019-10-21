@@ -13,7 +13,8 @@ html {
 }
 
 body {
-    background: linear-gradient(to right, rgba(0, 176, 155, 0.5), rgba(150, 201, 61, 0.5));
+    /* background: linear-gradient(to right, rgba(0, 176, 155, 0.5), rgba(150, 201, 61, 0.5)); */
+    background-color: rgba(220,220,220,0.2);
 }
 
 /* custom styles */
@@ -32,4 +33,10 @@ body {
     box-shadow: 8px 10px 18px -5px rgba(0,0,0,0.71);
     min-height: 350px;
     max-width: 450px;
+}
+button.btn {
+    font-size: 1rem !important;
+}
+#weatherTitle {
+    font-size: 2rem;
 }

@@ -28,16 +28,24 @@ function getCityWeather(event) {
 
     fetch(url).then(response => response.json()).then(data => {
         const result = data.filter(item => item.Country.ID == 'IN');
-        if(result.length >= 0){
+        if (result.length >= 0) {
             const url = `https://dataservice.accuweather.com/currentconditions/v1/${result[0].Key}?apikey=${apiKey}`;
-            
+
             fetch(url).then(response => response.json()).then(data => {
                 const matchedResult = data[0];
 
                 document.getElementById('weatherText').textContent = matchedResult.WeatherText;
                 document.getElementById('weatherImage').setAttribute('src', `images/${matchedResult.WeatherIcon}.png`);
                 document.getElementById('weather').innerHTML = `${Math.round(matchedResult.Temperature.Metric.Value)}<sup>&#176;</sup>C`;
-                document.getElementById('area').textContent = city.toUpperCase();
+
+                document.getElementById('city').value = '';
+                document.getElementById('state').textContent = '';
+                document.getElementById('area').textContent = '';
+
+                let dynamicCityName = document.getElementById('area').textContent = city.toUpperCase();
+                document.getElementById('area').style.fontWeight = 'bold';
+                document.getElementById('area').style.fontSize = '1.5rem';
+                document.getElementById('weatherTitle').textContent = `Weather in ${dynamicCityName}`;
             }).catch(error => console.log(error));
         }
     }).catch(error => console.log(error));
@@ -54,6 +62,7 @@ function getWeatherInfo(event) {
     const geoUrl = `https://dataservice.accuweather.com/locations/v1/cities/geoposition/search?apikey=${apiKey}&q=${lat},${lon}`;
     fetch(geoUrl).then(response => response.json()).then(data => {
         document.getElementById('area').textContent = data.LocalizedName;
+        // document.getElementById('state').textContent = data.LocalizedName;
         document.getElementById('state').textContent = data.AdministrativeArea.LocalizedName;
         collectWeatherInfo(data.Key);
     }).catch(error => console.log(error));
@@ -72,4 +81,10 @@ function getWeatherInfo(event) {
         document.getElementById('weatherImage').setAttribute('src', `images/${temperature.WeatherIcon}.png`);
         document.getElementById('weather').innerHTML = `${Math.round(temperature.Temperature.Metric.Value)}<sup>&#176;</sup>C`;
     }
+}
+
+
+function toggleHide() {
+    document.getElementById('toggleHide').classList.remove('d-none');
+    document.getElementById('toggleHideBtn').classList.add('d-none');
 }
